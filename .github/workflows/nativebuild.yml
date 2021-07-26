@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Basic Native Build
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+  pull_request:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  #Checks for duplicate actions. Skips push actions if there is a matching or duplicate pull-request action. 
+  check-for-duplicates:
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+        should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
+        with:
+          concurrent_skipping: 'same_content'
+          skip_after_successful_duplicate: 'true'
+          do_not_skip: '["pull_request", "workflow_dispatch", "schedule"]'
+  
+  native-build:
+    # The type of runner that the job will run on
+    name: Native Make Build
+    runs-on: ubuntu-18.04
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a set of commands using the runners shell
+      - name: Run make clean all
+        run: |
+          make clean all
