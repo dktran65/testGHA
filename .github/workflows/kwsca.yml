@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Basic Native Build
+name: klocwork-static-analysis
 
 # Controls when the workflow will run
 on:
