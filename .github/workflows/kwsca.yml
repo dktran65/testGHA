@@ -38,5 +38,5 @@ jobs:
 
     steps:
       - name: Download klocwork buildtools
-        run: wget http://192.168.0.50:8080/portal/downloads/kwbuildtools.21.2.0.74.linux64.zip 
+        run: ifconfig
 
