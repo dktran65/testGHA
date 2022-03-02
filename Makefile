@@ -4,7 +4,8 @@ DEBUG_FLAGS=
 CFLAGS=-g
 OBJ_DIR=obj
 
-OBJ = $(OBJ_DIR)/defects_test.o
+OBJ = $(OBJ_DIR)/defects_test.o \
+	$(OBJ_DIR)/featureA_test.o
 .PHONY = clean all
 	
 all : $(OBJ_DIR) $(OBJ)
