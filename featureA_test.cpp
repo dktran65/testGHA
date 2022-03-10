@@ -15,6 +15,6 @@ void null_pointer_deference_general_must()
 {
 	int *iPtr = NULL;
 
-	// *iPtr = 2;
+	*iPtr = 2;
 
 }
